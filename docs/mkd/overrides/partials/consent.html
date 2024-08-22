@@ -1,0 +1,131 @@
+  <!-- Copyright (c) 2024 MineRivals <admin@minerivals.com> -->
+
+<style>
+    .md-consent__form {
+        padding: 0;
+    }
+
+    .md-consent__form p {
+        font-family: 'Chillax-Medium';
+    }
+
+    .md-consent__form h2 {
+        font-family: 'Chillax-Semibold';
+    }
+
+    div.md-consent__controls > button.md-button.md-button--primary {
+      font-family: 'Chillax-Semibold';
+      box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+      border-radius: 1.0rem;
+    }
+
+    div.md-consent__controls > button.md-button.md-button--primary:focus,
+    div.md-consent__controls > button.md-button.md-button--primary:hover {
+      font-family: 'Chillax-Semibold';
+      box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+      background-color: #0091eb;
+      border-color: var(--md-accent-bg-color);
+    }
+
+    div.md-consent__controls > label.md-button {
+        font-family: 'Chillax-Semibold';
+        color: var(--md-accent-bg-color);
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        border-radius: 1.0rem;
+    }
+
+    div.md-consent__controls > label.md-button:focus,
+    div.md-consent__controls > label.md-button:hover {
+        font-family: 'Chillax-Semibold';
+        color: var(--md-accent-bg-color);
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        border-radius: 1.0rem;
+        border-color: var(--md-accent-bg-color);
+        background-color: #0091eb;
+    }
+</style>
+<!-- Determine cookies -->
+{% set cookies = config.extra.consent.cookies | d({}) %}
+{% if config.extra.analytics %}
+  {% if "analytics" not in cookies %}
+    {% set _ = cookies.update({ "analytics": "Google Analytics" }) %}
+  {% endif %}
+{% endif %}
+{% if config.repo_url and "github.com" in config.repo_url %}
+  {% if "github" not in cookies %}
+    {% set _ = cookies.update({ "github": "GitHub" }) %}
+  {% endif %}
+{% endif %}
+
+<!-- Determine actions -->
+{% set actions = config.extra.consent.actions %}
+{% if not actions %}
+  {% set actions = ["accept", "manage"] %}
+{% endif %}
+
+<!-- Determine initial settings state -->
+{% if "manage" not in actions %}
+  {% set checked = "checked" %}
+{% endif %}
+
+<!-- Consent title -->
+<h2>{{ config.extra.consent.title }}</h2>
+<p>{{ config.extra.consent.description }}</p>
+
+<!-- Consent settings -->
+<input
+  class="md-toggle"
+  type="checkbox"
+  id="__settings"
+  {{ checked }}
+/>
+<div class="md-consent__settings">
+  <ul class="task-list">
+    {% for type in cookies %}
+      {% set checked = "" %}
+      {% if cookies[type] is string %}
+        {% set name = cookies[type] %}
+        {% set checked = "checked" %}
+      {% else %}
+        {% set name = cookies[type].name %}
+        {% if cookies[type].checked %}
+          {% set checked = "checked" %}
+        {% endif %}
+      {% endif %}
+      <li class="task-list-item">
+        <label class="task-list-control">
+          <input type="checkbox" name="{{ type }}" {{ checked }}>
+          <span class="task-list-indicator"></span>
+          {{ name }}
+        </label>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+
+<!-- Consent controls -->
+<div class="md-consent__controls">
+  {% for action in actions %}
+
+    <!-- Button to accept cookies -->
+    {% if action == "accept" %}
+      <button class="md-button md-button--primary">
+        {{- lang.t("consent.accept") -}}
+      </button>
+    {% endif %}
+
+    <!-- Button to reject cookies -->
+    {% if action == "reject" %}
+      <button type="reset" class="md-button md-button--primary">
+        {{- lang.t("consent.reject") -}}
+      </button>
+    {% endif %}
+
+    <!-- Button to manage settings -->
+    {% if action == "manage" %}
+      <label class="md-button" for="__settings">
+        {{- lang.t("consent.manage") -}}
+      </label>
+    {% endif %}
+  {% endfor %}
+</div>

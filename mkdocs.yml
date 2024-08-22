@@ -1,0 +1,172 @@
+# Copyright (c) 2024 MineRivals <admin@minerivals.com>
+
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to
+# deal in the Software without restriction, including without limitation the
+# rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+# sell copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+# IN THE SOFTWARE.
+
+##########
+# CONFIG #
+##########
+site_name: "MineRivals"
+site_description: "The MineRivals Official Documentation"
+site_author: "MineRivals"
+site_url: "https://minerivals.com/"
+
+# Copyright
+copyright: |
+  Copyright &copy; 2024 <a href="https://minerivals.com"  target="_blank" rel="noopener">MineRivals</a>
+
+#########
+# THEME #
+#########
+theme:
+  custom_dir: docs/mkd/overrides/
+  name: "material"
+  language: "en"
+  features:
+    - announce.dismiss
+    - content.code.annotate
+    - content.code.copy
+    - content.code.select
+    - content.tabs.link
+    - content.tooltips
+
+    - header.autohide
+    - navigation.expand
+    - navigation.footer
+    - navigation.indexes
+    - navigation.path
+    - navigation.tabs
+    - navigation.top
+    - navigation.tracking
+
+    - search.highlight
+    - search.share
+    - search.suggest
+    - toc.follow
+
+  palette:
+    # Global Palette
+    scheme: slate
+    primary: indigo
+    accent: light blue
+
+  logo: mkd/assets/images/logo-shardbyte-master-light.webp
+  favicon: mkd/assets/images/logo-shardbyte-master-light.webp
+
+## Global Font
+  font:
+    text: 'Roboto'
+    code: 'Roboto Mono'
+
+##############
+# EXTENSIONS #
+##############
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.tilde
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.magiclink:
+      normalize_issue_symbols: true
+      repo_url_shorthand: true
+      user: Shardbyte
+      repo: shard-docs
+  - pymdownx.snippets:
+      auto_append:
+        - refs/abbreviations.md
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+      combine_header_slug: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
+###########
+# PLUGINS #
+###########
+plugins:
+  - mkdocs_pug
+  - glightbox
+  - search
+  - social
+  - tags
+  - minify:
+      minify_html: true
+  - git-revision-date-localized:
+      enabled: true
+      type: timeago
+      enable_creation_date: true
+      fallback_to_build_date: true
+
+#########
+# EXTRA #
+#########
+extra:
+
+## Social Links
+  social:
+    # Discord
+    - icon: fontawesome/brands/discord
+      link: https://discord.minerivals.com
+      name: MineRivals @ Discord
+
+## JS Extras
+extra_javascript:
+  - mkd/overrides/js/extra.js
+  - mkd/overrides/js/hero_block.js
+
+## CSS Extras
+extra_css:
+  - mkd/overrides/css/extra.css
+  - mkd/overrides/css/hero_block.css
+
+#########
+# PAGES #
+#########
+nav:
+  - Home: index.md

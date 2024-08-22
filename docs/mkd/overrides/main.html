@@ -1,0 +1,23 @@
+  <!-- Copyright (c) 2024 MineRivals <admin@minerivals.com> -->
+
+<!-- Elements added to main will be displayed on all pages -->
+{% extends "base.html" %}
+
+<!-- Announcement bar -->
+{% block announce %}
+  For updates follow <strong>@shardbyte</strong> on
+  <a rel="me" href="https://vote1.minerivals.com">
+    <span class="twemoji vote1">
+      {% include ".icons/material/vote.svg" %}
+    </span>
+    <strong>Voting Site #1</strong>
+  </a>
+  and
+  <a href="https://vote2.minerivals.com">
+    <span class="twemoji vote2">
+      {% include ".icons/material/vote.svg" %}
+    </span>
+    <strong>Voting Site #2</strong>
+  </a>
+  <!-- End Announcement bar -->
+{% endblock %}

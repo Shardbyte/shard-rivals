@@ -1,0 +1,21 @@
+/* Copyright (c) 2024 MineRivals <admin@minerivals.com> */
+
+@font-face {
+  font-family: 'Chillax-Medium';
+  src: url('../fonts/chillax/Chillax-Medium.woff2') format('woff2'),
+       url('../fonts/chillax/Chillax-Medium.woff') format('woff'),
+       url('../fonts/chillax/Chillax-Medium.ttf') format('truetype');
+       font-weight: 500;
+       font-display: swap;
+       font-style: normal;
+}
+
+@font-face {
+  font-family: 'Chillax-Semibold';
+  src: url('../fonts/chillax/Chillax-Semibold.woff2') format('woff2'),
+       url('../fonts/chillax/Chillax-Semibold.woff') format('woff'),
+       url('../fonts/chillax/Chillax-Semibold.ttf') format('truetype');
+       font-weight: 600;
+       font-display: swap;
+       font-style: normal;
+}
