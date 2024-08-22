@@ -5,6 +5,8 @@ hide:
   - feedback
   - footer
   - header
+  - search
+  - tab
 template: home.html
 title: Home
 ---
