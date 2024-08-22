@@ -3,6 +3,20 @@
 <!-- Elements added to main will be displayed on all pages -->
 {% extends "base.html" %}
 
+<!-- Google Tag Manager -->
+{% block libs %}
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KXRTKY548E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KXRTKY548E');
+</script>
+{% endblock %}
+<!-- End Google Tag Manager -->
+
+
 <!-- Announcement bar -->
 {% block announce %}
   Help us <strong>grow</strong> by <strong>voting</strong> on
@@ -19,5 +33,5 @@
     </span>
     <strong>Voting Site #2</strong>
   </a>
+  {% endblock %}
   <!-- End Announcement bar -->
-{% endblock %}
