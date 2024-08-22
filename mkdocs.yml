@@ -130,7 +130,6 @@ markdown_extensions:
 # PLUGINS #
 ###########
 plugins:
-  - mkdocs_pug
   - glightbox
   - search
   - social
