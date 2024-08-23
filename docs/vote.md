@@ -74,4 +74,20 @@ Voting on **MineRivals** can significantly contribute to the server's growth in 
 
     [:octicons-arrow-right-24: Voting Site #4](https://vote4.minerivals.com)
 
+-   :material-scale-balance:{ .lg .middle } __Vote for MineRivals__
+
+    ---
+
+    Vote here with your username for various rewards!
+
+    [:octicons-arrow-right-24: Voting Site #5](https://vote5.minerivals.com)
+
+-   :material-scale-balance:{ .lg .middle } __Vote for MineRivals__
+
+    ---
+
+    Vote here with your username for various rewards!
+
+    [:octicons-arrow-right-24: Voting Site #6](https://vote6.minerivals.com)
+
 </div>
