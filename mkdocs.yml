@@ -178,6 +178,6 @@ nav:
       - Commands: features/commands.md
       - Economy: features/economy.md
       - Levels: features/levels.md
-      - Shop: features/shops.md
+      - Shops: features/shops.md
   - Vote: vote.md
 
