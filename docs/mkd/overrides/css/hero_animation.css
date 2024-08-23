@@ -1,4 +1,4 @@
-#hero {
+#tx-hero__image {
   position: fixed;
   animation: drift;
   animation-duration: 1.5s;
