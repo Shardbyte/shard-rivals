@@ -157,12 +157,11 @@ extra:
 ## JS Extras
 extra_javascript:
   - mkd/overrides/js/extra.js
-  - mkd/overrides/js/hero_block.js
 
 ## CSS Extras
 extra_css:
   - mkd/overrides/css/extra.css
-  - mkd/overrides/css/hero_block.css
+  - mkd/overrides/css/hero_animation.css
 
 #########
 # PAGES #
