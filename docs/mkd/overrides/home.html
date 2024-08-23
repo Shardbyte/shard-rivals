@@ -1,707 +1,350 @@
-  <!-- Copyright (c) 2024 MineRivals <admin@minerivals.com> -->
+<!-- Copyright (c) 2024 MineRivals <admin@minerivals.com> -->
 
-  {% extends "main.html" %}
-  {% block tabs %}
-  {{ super() }}
-  <style>
-      .md-main {
-          flex-grow: 0
-      }
-      .md-main__inner {
-          display: flex;
-          height: 100%;
-          width: 100%;
-          position: fixed;
-      }
-      .tx-container {
-          padding-top: .0rem;
-          background: linear-gradient(to bottom, var(--md-primary-fg-color), hsla(160deg,47%,55%,1) 99%,var(--md-accent-bg-color) 99%);
-      }
-      .tx-hero {
-          margin: 32px 2.8rem;
-          color: var(--md-accent-bg-color);
-          justify-content: center;
-      }
-      .md-tabs__list {
-          font-family: 'Chillax-Medium';
-      }
-      .md-header__topic {
-          font-family: 'Chillax-Medium';
-      }
-      .md-header__title {
-          font-family: 'Chillax-Semibold';
-      }
-      .md-header__source {
-          font-family: 'Chillax-Medium';
-      }
-      .md-search__inner {
-          font-family: 'Chillax-Medium';
-      }
-      .md-search__input {
-          font-family: 'Chillax-Medium';
-      }
-      .md-search__output {
-          font-family: 'Chillax-Medium';
-      }
-      .md-search__form {
-          font-family: 'Chillax-Medium';
-      }
-      .md-search__form {
-          font-family: 'Chillax-Medium';
-      }
-      .md-footer {
-          font-family: 'Chillax-Medium';
-      }
-      .tx-hero h1 {
-          font-family: 'Chillax-Semibold';
-          margin-bottom: 1rem;
-          color: currentColor;
-          font-size: 3.0rem !important;
-      }
-      .tx-hero__content {
-          padding-bottom: 1rem;
-          margin: 0 auto;
-      }
-      .tx-hero__content p {
-          font-family: 'Chillax-Medium';
-          padding-bottom: 1rem;
-          margin: 0 auto;
-      }
-      .tx-hero__image{
-          order:1;
-          padding-right: 2.5rem;
-      }
-      .tx-hero .md-button {
-          font-family: 'Chillax-Semibold';
-          margin-top: .5rem;
-          margin-right: .5rem;
-          color: var(--md-accent-bg-color);
-          border-radius: 1.0rem;
-      }
-  
-      .tx-hero .md-button:focus,
-      .tx-hero .md-button:hover {
-          font-family: 'Chillax-Semibold';
-          margin-top: .5rem;
-          margin-right: .5rem;
-          color: var(--md-accent-bg-color);
-          border-color: var(--md-accent-bg-color);
-          background-color: #0091eb;
-          border-radius: 1.0rem;
-          box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-      }
-  
-      .tx-hero .md-button--primary {
-          font-family: 'Chillax-Semibold';
-          background-color: var(--md-primary-fg-color);
-          border-color: var(--md-primary-fg-color);
-          color: var(--md-accent-bg-color);
-          border-radius: 1.0rem;
-      }
-  
-      .tx-hero .md-button--primary:focus,
-      .tx-hero .md-button--primary:hover {
-          font-family: 'Chillax-Semibold';
-          color: var(--md-accent-bg-color);
-          border-color: var(--md-accent-bg-color);
-          background-color: #0091eb;
-          box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-      }
-  
-      .feature-item h2 svg {
-          height: 30px;
-          float: left;
-          margin-right: 10px;
-          transform: translateY(10%);
-      }
-      .top-hr {
-          margin-top: 42px;
-      }
-      .feature-item {
-          font-family: 'Chillax-Semibold';
-          font-weight: 300;
-          box-sizing: border-box;
-          padding: 0 15px;
-          word-break: break-word
-      }
-      .feature-item h2 {
-          color: var(--md-accent-bg-color--dark);
-          font-weight: 300;
-          font-size: 32px;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          line-height: normal;
-          margin-top: 20px;
-          margin-bottom: 10px;
-          font-family: inherit;
-      }
-      .feature-item p {
-          font-family: 'Chillax-Medium';
-          font-size: 16px;
-          line-height: 1.8em;
-          text-rendering: optimizeLegibility;
-          -webkit-font-smoothing: antialiased;
-          color: var(--md-accent-bg-color--dark);
-          margin: 0 0 10px;
-          display: block;
-      }
-      @media screen and (max-width:30em) {
-          .tx-hero h1 {
-              font-size: 1.4rem
-          }
-      }
-      @media screen and (min-width:60em) {
-          .md-sidebar--secondary {
-              display: none
-          }
-          .tx-hero {
-              display: flex;
-              align-items: center;
-              justify-content: center;
-          }
-          .tx-hero__content {
-              max-width: 22rem;
-              margin-top: 3.5rem;
-              margin-bottom: 3.5rem;
-              margin-left: 1.0rem;
-              margin-right: 4.0rem;
-              align-items: center;
-          }
-      }
-      @media screen and (min-width:76.25em) {
-          .md-sidebar--primary {
-              display: none
-          }
-          .top-hr {
-              width: 100%;
-              display: flex;
-              max-width: 61rem;
-              margin-right: auto;
-              margin-left: auto;
-              padding: 0 .2rem;
-          }
-          .bottom-hr {
-              margin-top: 10px;
-              width: 100%;
-              display: flex;
-              max-width: 61rem;
-              margin-right: auto;
-              margin-left: auto;
-              padding: 0 .2rem;
-          }
-          .feature-item {
-              flex: 1;
-              min-width: 0;
-          }
-          .feature-item:hover {
-              background-color: #526cfe47;
-              border-radius: 30px;
-              box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-          }
-      }
-      .hr {
-          border-bottom: 1px solid #eee;
-          width: 100%;
-          margin: 20px 0;
-      }
-      .text-center {
-          text-align: center;
-          padding-right: 15px;
-          padding-left: 15px;
-          margin-right: auto;
-          margin-left: auto;
-          margin-top: 15px;
-          font-family: 'Chillax-Medium';
-          font-size: 23px;
-          font-weight: 300;
-          padding-bottom: 10px;
-      }
-      .logos {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-flow: row wrap;
-          margin: 0 auto;
-      }
-      .logos img {
-          flex: 1 1 auto;
-          padding: 25px;
-          max-height: 130px;
-          vertical-align: middle;
-      }
-      .hr-logos {
-          margin-top: 0;
-          margin-bottom: 30px;
-      }
-      .md-footer-meta__inner {
-          display: none;
-          flex-wrap: wrap;
-          justify-content: space-between;
-          margin-top: 1.0rem;
-      }
-      .md-container {
-          background-color: rgba(247, 247, 247, 0.90);
-      }
-  </style>
+{% extends "main.html" %}
+{% block tabs %}
+{{ super() }}
+<style>
+    .md-main {
+        flex-grow: 0
+    }
+
+    .md-main__inner {
+        display: flex;
+        height: 100%;
+        width: 100%;
+        position: fixed;
+    }
+
+    .tx-container {
+        padding-top: .0rem;
+        background: linear-gradient(to bottom, var(--md-primary-fg-color), hsla(160deg, 47%, 55%, 1) 99%, var(--md-accent-bg-color) 99%);
+    }
+
+    .tx-hero {
+        margin: 32px 2.8rem;
+        color: var(--md-accent-bg-color);
+        justify-content: center;
+    }
+
+    .md-tabs__list {
+        font-family: 'Chillax-Medium';
+    }
+
+    .md-header__topic {
+        font-family: 'Chillax-Medium';
+    }
+
+    .md-header__title {
+        font-family: 'Chillax-Semibold';
+    }
+
+    .md-header__source {
+        font-family: 'Chillax-Medium';
+    }
+
+    .md-search__inner {
+        font-family: 'Chillax-Medium';
+    }
+
+    .md-search__input {
+        font-family: 'Chillax-Medium';
+    }
+
+    .md-search__output {
+        font-family: 'Chillax-Medium';
+    }
+
+    .md-search__form {
+        font-family: 'Chillax-Medium';
+    }
+
+    .md-search__form {
+        font-family: 'Chillax-Medium';
+    }
+
+    .md-footer {
+        font-family: 'Chillax-Medium';
+    }
+
+    .tx-hero h1 {
+        font-family: 'Chillax-Semibold';
+        margin-bottom: 1rem;
+        color: currentColor;
+        font-size: 3.0rem !important;
+    }
+
+    .tx-hero__content {
+        padding-bottom: 1rem;
+        margin: 0 auto;
+    }
+
+    .tx-hero__content p {
+        font-family: 'Chillax-Medium';
+        padding-bottom: 1rem;
+        margin: 0 auto;
+    }
+
+    .tx-hero__image {
+        order: 1;
+        padding-right: 2.5rem;
+    }
+
+    .tx-hero .md-button {
+        font-family: 'Chillax-Semibold';
+        margin-top: .5rem;
+        margin-right: .5rem;
+        color: var(--md-accent-bg-color);
+        border-radius: 1.0rem;
+    }
+
+    .tx-hero .md-button:focus,
+    .tx-hero .md-button:hover {
+        font-family: 'Chillax-Semibold';
+        margin-top: .5rem;
+        margin-right: .5rem;
+        color: var(--md-accent-bg-color);
+        border-color: var(--md-accent-bg-color);
+        background-color: #0091eb;
+        border-radius: 1.0rem;
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    .tx-hero .md-button--primary {
+        font-family: 'Chillax-Semibold';
+        background-color: var(--md-primary-fg-color);
+        border-color: var(--md-primary-fg-color);
+        color: var(--md-accent-bg-color);
+        border-radius: 1.0rem;
+    }
+
+    .tx-hero .md-button--primary:focus,
+    .tx-hero .md-button--primary:hover {
+        font-family: 'Chillax-Semibold';
+        color: var(--md-accent-bg-color);
+        border-color: var(--md-accent-bg-color);
+        background-color: #0091eb;
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    .feature-item h2 svg {
+        height: 30px;
+        float: left;
+        margin-right: 10px;
+        transform: translateY(10%);
+    }
+
+    .top-hr {
+        margin-top: 42px;
+    }
+
+    .feature-item {
+        font-family: 'Chillax-Semibold';
+        font-weight: 300;
+        box-sizing: border-box;
+        padding: 0 15px;
+        word-break: break-word
+    }
+
+    .feature-item h2 {
+        color: var(--md-accent-bg-color--dark);
+        font-weight: 300;
+        font-size: 32px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        line-height: normal;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        font-family: inherit;
+    }
+
+    .feature-item p {
+        font-family: 'Chillax-Medium';
+        font-size: 16px;
+        line-height: 1.8em;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        color: var(--md-accent-bg-color--dark);
+        margin: 0 0 10px;
+        display: block;
+    }
+
+    @media screen and (max-width:30em) {
+        .tx-hero h1 {
+            font-size: 1.4rem
+        }
+    }
+
+    @media screen and (min-width:60em) {
+        .md-sidebar--secondary {
+            display: none
+        }
+
+        .tx-hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tx-hero__content {
+            max-width: 22rem;
+            margin-top: 3.5rem;
+            margin-bottom: 3.5rem;
+            margin-left: 1.0rem;
+            margin-right: 4.0rem;
+            align-items: center;
+        }
+    }
+
+    @media screen and (min-width:76.25em) {
+        .md-sidebar--primary {
+            display: none
+        }
+
+        .top-hr {
+            width: 100%;
+            display: flex;
+            max-width: 61rem;
+            margin-right: auto;
+            margin-left: auto;
+            padding: 0 .2rem;
+        }
+
+        .bottom-hr {
+            margin-top: 10px;
+            width: 100%;
+            display: flex;
+            max-width: 61rem;
+            margin-right: auto;
+            margin-left: auto;
+            padding: 0 .2rem;
+        }
+
+        .feature-item {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .feature-item:hover {
+            background-color: #526cfe47;
+            border-radius: 30px;
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        }
+    }
+
+    .hr {
+        border-bottom: 1px solid #eee;
+        width: 100%;
+        margin: 20px 0;
+    }
+
+    .text-center {
+        text-align: center;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+        margin-top: 15px;
+        font-family: 'Chillax-Medium';
+        font-size: 23px;
+        font-weight: 300;
+        padding-bottom: 10px;
+    }
+
+    .logos {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-flow: row wrap;
+        margin: 0 auto;
+    }
+
+    .logos img {
+        flex: 1 1 auto;
+        padding: 25px;
+        max-height: 130px;
+        vertical-align: middle;
+    }
+
+    .hr-logos {
+        margin-top: 0;
+        margin-bottom: 30px;
+    }
+
+    .md-footer-meta__inner {
+        display: none;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-top: 1.0rem;
+    }
+
+    .md-container {
+        background-color: rgba(247, 247, 247, 0.90);
+    }
+
+    .md-tabs {
+        display: none;
+    }
+
+    .md-search {
+        display: none;
+    }
+</style>
 <!-- Main site Entry button descriptions -->
 <section class="tx-container">
     <div class="md-grid md-typeset">
-      <div class="tx-hero">
-        <div class="tx-hero__image">
-          <!-- CSS Reset and Hero Block CSS -->
-          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-          <link rel="stylesheet" href="./css/hero_block.css">
-          
-          <div id="wrapper" style="display: grid; justify-content: center; align-items: center;">
-            <div id="block">
-              <div class="face right">
-                <!-- Pixel blocks -->
-                <div class="pixel dirt-3"></div>
-                <div class="pixel dirt-2"></div>
-                <div class="pixel dirt-1"></div>
-                <div class="pixel dirt-3"></div>
-                <div class="pixel dirt-1"></div>
-                <div class="pixel dirt-2"></div>
-                <div class="pixel dirt-3"></div>
-                <div class="pixel dirt-3"></div>
-                <div class="pixel dirt-0"></div>
-                <div class="pixel dirt-0"></div>
-                <div class="pixel dirt-1"></div>
-                <div class="pixel dirt-0"></div>
-                <div class="pixel dirt-3"></div>
-                <div class="pixel dirt-0"></div>
-                <div class="pixel dirt-0"></div>
-                <div class="pixel dirt-0"></div>
-                <div class="pixel dirt-1"></div>
-                <div class="pixel dirt-1"></div>
-                <div class="pixel dirt-1"></div>
-                <div class="pixel dirt-1"></div>
-                <div class="pixel dirt-1"></div>
-                <div class="pixel dirt-3"></div>
-                <div class="pixel dirt-2"></div>
-                <div class="pixel dirt-2"></div>
-                <div class="pixel dirt-0"></div>
-                <div class="pixel dirt-2"></div>
-                <div class="pixel dirt-3"></div>
-                <div class="pixel dirt-0"></div>
-                <div class="pixel dirt-2"></div>
-                <div class="pixel dirt-3"></div>
-                <div class="pixel dirt-2"></div>
-                <div class="pixel dirt-0"></div>
-                <div class="pixel dirt-3"></div>
-                <div class="pixel dirt-1"></div>
-                <div class="pixel dirt-1"></div>
-                <div class="pixel dirt-3"></div>
-                <div class="pixel dirt-0"></div>
-                <div class="pixel dirt-1"></div>
-                <div class="pixel dirt-3"></div>
-                <div class="pixel dirt-2"></div>
-                <div class="pixel dirt-0"></div>
-                <div class="pixel dirt-3"></div>
-                <div class="pixel dirt-3"></div>
-                <div class="pixel dirt-2"></div>
-                <div class="pixel dirt-1"></div>
-                <div class="pixel dirt-1"></div>
-                <div class="pixel dirt-0"></div>
-                <div class="pixel dirt-2"></div>
-                <div class="pixel dirt-0"></div>
-                <div class="pixel dirt-3"></div>
-                <div class="pixel dirt-3"></div>
-                <div class="pixel dirt-3"></div>
-                <div class="pixel dirt-0"></div>
-                <div class="pixel dirt-0"></div>
-                <div class="pixel dirt-0"></div>
-                <div class="pixel dirt-0"></div>
-                <div class="pixel dirt-2"></div>
-                <div class="pixel dirt-3"></div>
-                <div class="pixel dirt-0"></div>
-                <div class="pixel dirt-1"></div>
-                <div class="pixel dirt-3"></div>
-                <div class="pixel dirt-0"></div>
-                <div class="pixel dirt-1"></div>
-                <div class="pixel dirt-2"></div>
-                <div class="pixel dirt-0"></div>
-                <div class="pixel dirt-1"></div>
-                <div class="pixel dirt-2"></div>
-                <div class="pixel dirt-1"></div>
-                <div class="pixel dirt-2"></div>
-                <div class="pixel dirt-1"></div>
-                <div class="pixel dirt-1"></div>
-                <div class="pixel dirt-2"></div>
-                <div class="pixel dirt-1"></div>
-                <div class="pixel dirt-2"></div>
-                <div class="pixel dirt-1"></div>
-                <div class="pixel dirt-1"></div>
-                <div class="pixel dirt-1"></div>
-                <div class="pixel dirt-3"></div>
-                <div class="pixel dirt-0"></div>
-                <div class="pixel dirt-2"></div>
-                <div class="pixel dirt-2"></div>
-                <div class="pixel dirt-2"></div>
-                <div class="pixel dirt-1"></div>
-                <div class="pixel dirt-2"></div>
-                <div class="pixel dirt-3"></div>
-                <div class="pixel dirt-2"></div>
-                <div class="pixel dirt-1"></div>
-                <div class="pixel dirt-1"></div>
-                <div class="pixel dirt-0"></div>
-                <div class="pixel dirt-3"></div>
-                <div class="pixel dirt-3"></div>
-                <div class="pixel dirt-2"></div>
-                <div class="pixel dirt-2"></div>
-                <div class="pixel dirt-3"></div>
-                <div class="pixel dirt-3"></div>
-                <div class="pixel dirt-0"></div>
-                <div class="pixel dirt-3"></div>
-                <div class="pixel dirt-1"></div>
-                <div class="pixel dirt-1"></div>
-                <div class="pixel dirt-3"></div>
-                <!-- ... (rest of the pixel structure) ... -->
-              </div>
-              <div class="inner">
-                <!-- Pixel blocks -->
-                <div class="pixel grass-1 side-1 grass-0"></div>
-                <div class="pixel grass-3 side-0 grass-1"></div>
-                <div class="pixel grass-3 side-0 grass-3"></div>
-                <div class="pixel grass-0 side-0 grass-0"></div>
-                <div class="pixel grass-1 side-0 grass-3"></div>
-                <div class="pixel grass-2 side-0 grass-0"></div>
-                <div class="pixel grass-2 side-0 grass-0"></div>
-                <div class="pixel grass-0 side-2 grass-1"></div>
-                <div class="pixel grass-3 side-1 grass-0"></div>
-                <div class="pixel grass-1 side-1 grass-2"></div>
-                <div class="pixel grass-3 side-0 grass-1"></div>
-                <div class="pixel grass-2 side-1 grass-1"></div>
-                <div class="pixel grass-1 side-1 grass-1"></div>
-                <div class="pixel grass-2 side-0 grass-2"></div>
-                <div class="pixel grass-0 side-1 grass-1"></div>
-                <div class="pixel grass-0 side-2 grass-3"></div>
-                <div class="pixel grass-0 side-1 grass-1"></div>
-                <div class="pixel grass-0 side-0 grass-3"></div>
-                <div class="pixel grass-0 side-1 grass-1"></div>
-                <div class="pixel grass-2 side-2 grass-1"></div>
-                <div class="pixel grass-2 side-2 grass-0"></div>
-                <div class="pixel grass-2 side-1 grass-2"></div>
-                <div class="pixel grass-2 side-1 grass-0"></div>
-                <div class="pixel grass-0 side-0 grass-0"></div>
-                <div class="pixel grass-2 side-2 grass-0"></div>
-                <div class="pixel grass-1 side-0 grass-2"></div>
-                <div class="pixel grass-0 side-2 grass-2"></div>
-                <div class="pixel grass-1 side-1 grass-2"></div>
-                <div class="pixel grass-2 side-0 grass-3"></div>
-                <div class="pixel grass-2 side-1 grass-0"></div>
-                <div class="pixel grass-0 side-3 grass-1"></div>
-                <div class="pixel grass-2 side-3 grass-0"></div>
-                <div class="pixel grass-0 side-3 grass-0"></div>
-                <div class="pixel grass-2 side-3 grass-0"></div>
-                <div class="pixel grass-3 side-2 grass-3"></div>
-                <div class="pixel grass-2 side-2 grass-0"></div>
-                <div class="pixel grass-2 side-3 grass-3"></div>
-                <div class="pixel grass-3 side-0 grass-3"></div>
-                <div class="pixel grass-1 side-2 grass-1"></div>
-                <div class="pixel grass-2 side-2 grass-1"></div>
-                <!-- ... (rest of the pixel structure) ... -->
-              </div>
-              <div class="face left">
-                <!-- Pixel blocks -->
-                <div class="pixel dirt-3"></div>
-                <div class="pixel dirt-2"></div>
-                <div class="pixel dirt-0"></div>
-                <div class="pixel dirt-0"></div>
-                <div class="pixel dirt-0"></div>
-                <div class="pixel dirt-0"></div>
-                <div class="pixel dirt-1"></div>
-                <div class="pixel dirt-1"></div>
-                <div class="pixel dirt-0"></div>
-                <div class="pixel dirt-2"></div>
-                <div class="pixel dirt-3"></div>
-                <div class="pixel dirt-0"></div>
-                <div class="pixel dirt-1"></div>
-                <div class="pixel dirt-3"></div>
-                <div class="pixel dirt-0"></div>
-                <div class="pixel dirt-2"></div>
-                <div class="pixel dirt-3"></div>
-                <div class="pixel dirt-0"></div>
-                <div class="pixel dirt-0"></div>
-                <div class="pixel dirt-1"></div>
-                <div class="pixel dirt-0"></div>
-                <div class="pixel dirt-1"></div>
-                <div class="pixel dirt-3"></div>
-                <div class="pixel dirt-2"></div>
-                <div class="pixel dirt-2"></div>
-                <div class="pixel dirt-2"></div>
-                <div class="pixel dirt-3"></div>
-                <div class="pixel dirt-3"></div>
-                <div class="pixel dirt-3"></div>
-                <div class="pixel dirt-3"></div>
-                <div class="pixel dirt-3"></div>
-                <div class="pixel dirt-1"></div>
-                <div class="pixel dirt-0"></div>
-                <div class="pixel dirt-1"></div>
-                <div class="pixel dirt-0"></div>
-                <div class="pixel dirt-1"></div>
-                <div class="pixel dirt-1"></div>
-                <div class="pixel dirt-1"></div>
-                <div class="pixel dirt-2"></div>
-                <div class="pixel dirt-3"></div>
-                <div class="pixel dirt-1"></div>
-                <div class="pixel dirt-0"></div>
-                <div class="pixel dirt-3"></div>
-                <div class="pixel dirt-1"></div>
-                <div class="pixel dirt-3"></div>
-                <div class="pixel dirt-2"></div>
-                <div class="pixel dirt-2"></div>
-                <div class="pixel dirt-2"></div>
-                <div class="pixel dirt-2"></div>
-                <div class="pixel dirt-2"></div>
-                <div class="pixel dirt-0"></div>
-                <div class="pixel dirt-2"></div>
-                <div class="pixel dirt-2"></div>
-                <div class="pixel dirt-2"></div>
-                <div class="pixel dirt-0"></div>
-                <div class="pixel dirt-1"></div>
-                <div class="pixel dirt-3"></div>
-                <div class="pixel dirt-2"></div>
-                <div class="pixel dirt-0"></div>
-                <div class="pixel dirt-3"></div>
-                <div class="pixel dirt-0"></div>
-                <div class="pixel dirt-2"></div>
-                <div class="pixel dirt-1"></div>
-                <div class="pixel dirt-0"></div>
-                <div class="pixel dirt-2"></div>
-                <div class="pixel dirt-3"></div>
-                <div class="pixel dirt-0"></div>
-                <div class="pixel dirt-2"></div>
-                <div class="pixel dirt-1"></div>
-                <div class="pixel dirt-0"></div>
-                <div class="pixel dirt-3"></div>
-                <div class="pixel dirt-3"></div>
-                <div class="pixel dirt-2"></div>
-                <div class="pixel dirt-3"></div>
-                <div class="pixel dirt-1"></div>
-                <div class="pixel dirt-3"></div>
-                <div class="pixel dirt-0"></div>
-                <div class="pixel dirt-2"></div>
-                <div class="pixel dirt-1"></div>
-                <div class="pixel dirt-3"></div>
-                <div class="pixel dirt-2"></div>
-                <div class="pixel dirt-1"></div>
-                <div class="pixel dirt-0"></div>
-                <div class="pixel dirt-2"></div>
-                <div class="pixel dirt-0"></div>
-                <div class="pixel dirt-2"></div>
-                <div class="pixel dirt-2"></div>
-                <div class="pixel dirt-3"></div>
-                <div class="pixel dirt-2"></div>
-                <div class="pixel dirt-0"></div>
-                <div class="pixel dirt-3"></div>
-                <div class="pixel dirt-0"></div>
-                <div class="pixel dirt-2"></div>
-                <div class="pixel dirt-3"></div>
-                <div class="pixel dirt-2"></div>
-                <div class="pixel dirt-3"></div>
-                <div class="pixel dirt-3"></div>
-                <div class="pixel dirt-3"></div>
-                <div class="pixel dirt-0"></div>
-                <div class="pixel dirt-1"></div>
-                <!-- ... (rest of the pixel structure) ... -->
-              </div>
-              <div class="inner">
-                <!-- Pixel blocks -->
-                <div class="pixel grass-1 side-0 grass-1"></div>
-                <div class="pixel grass-2 side-2 grass-0"></div>
-                <div class="pixel grass-1 side-2 grass-1"></div>
-                <div class="pixel grass-0 side-0 grass-1"></div>
-                <div class="pixel grass-3 side-2 grass-3"></div>
-                <div class="pixel grass-0 side-2 grass-2"></div>
-                <div class="pixel grass-2 side-2 grass-1"></div>
-                <div class="pixel grass-3 side-2 grass-0"></div>
-                <div class="pixel grass-1 side-1 grass-0"></div>
-                <div class="pixel grass-2 side-1 grass-2"></div>
-                <div class="pixel grass-2 side-0 grass-0"></div>
-                <div class="pixel grass-1 side-0 grass-1"></div>
-                <div class="pixel grass-3 side-1 grass-2"></div>
-                <div class="pixel grass-2 side-0 grass-3"></div>
-                <div class="pixel grass-1 side-2 grass-2"></div>
-                <div class="pixel grass-3 side-1 grass-3"></div>
-                <div class="pixel grass-2 side-0 grass-1"></div>
-                <div class="pixel grass-1 side-0 grass-3"></div>
-                <div class="pixel grass-2 side-1 grass-1"></div>
-                <div class="pixel grass-2 side-1 grass-2"></div>
-                <div class="pixel grass-1 side-1 grass-1"></div>
-                <div class="pixel grass-3 side-1 grass-1"></div>
-                <div class="pixel grass-0 side-0 grass-3"></div>
-                <div class="pixel grass-2 side-0 grass-0"></div>
-                <div class="pixel grass-2 side-1 grass-0"></div>
-                <div class="pixel grass-0 side-0 grass-2"></div>
-                <div class="pixel grass-0 side-2 grass-2"></div>
-                <div class="pixel grass-2 side-0 grass-3"></div>
-                <div class="pixel grass-3 side-0 grass-0"></div>
-                <div class="pixel grass-0 side-2 grass-2"></div>
-                <div class="pixel grass-2 side-1 grass-2"></div>
-                <div class="pixel grass-0 side-1 grass-1"></div>
-                <div class="pixel grass-0 side-3 grass-2"></div>
-                <div class="pixel grass-0 side-0 grass-3"></div>
-                <div class="pixel grass-3 side-1 grass-3"></div>
-                <div class="pixel grass-3 side-3 grass-1"></div>
-                <div class="pixel grass-1 side-2 grass-2"></div>
-                <div class="pixel grass-0 side-3 grass-3"></div>
-                <div class="pixel grass-0 side-2 grass-2"></div>
-                <div class="pixel grass-1 side-1 grass-0"></div>
-                <!-- ... (rest of the pixel structure) ... -->
-              </div>
-              <div class="face top">
-                <!-- Pixel blocks -->
-                <div class="pixel grass-2 lvl-2"></div>
-                <div class="pixel grass-0 lvl-2"></div>
-                <div class="pixel grass-2 lvl-2"></div>
-                <div class="pixel grass-3 lvl-1"></div>
-                <div class="pixel grass-1 lvl-1"></div>
-                <div class="pixel grass-2 lvl-0"></div>
-                <div class="pixel grass-1 lvl-1"></div>
-                <div class="pixel grass-2 lvl-2"></div>
-                <div class="pixel grass-2 lvl-1"></div>
-                <div class="pixel grass-0 lvl-2"></div>
-                <div class="pixel grass-3 lvl-1"></div>
-                <div class="pixel grass-1 lvl-1"></div>
-                <div class="pixel grass-0 lvl-2"></div>
-                <div class="pixel grass-0 lvl-1"></div>
-                <div class="pixel grass-3 lvl-1"></div>
-                <div class="pixel grass-0 lvl-1"></div>
-                <div class="pixel grass-2 lvl-0"></div>
-                <div class="pixel grass-1 lvl-2"></div>
-                <div class="pixel grass-3 lvl-1"></div>
-                <div class="pixel grass-3 lvl-0"></div>
-                <div class="pixel grass-1 lvl-2"></div>
-                <div class="pixel grass-1 lvl-0"></div>
-                <div class="pixel grass-0 lvl-1"></div>
-                <div class="pixel grass-1 lvl-1"></div>
-                <div class="pixel grass-1 lvl-0"></div>
-                <div class="pixel grass-1 lvl-2"></div>
-                <div class="pixel grass-2 lvl-2"></div>
-                <div class="pixel grass-0 lvl-1"></div>
-                <div class="pixel grass-1 lvl-2"></div>
-                <div class="pixel grass-0 lvl-0"></div>
-                <div class="pixel grass-1 lvl-1"></div>
-                <div class="pixel grass-0 lvl-0"></div>
-                <div class="pixel grass-1 lvl-2"></div>
-                <div class="pixel grass-3 lvl-0"></div>
-                <div class="pixel grass-0 lvl-0"></div>
-                <div class="pixel grass-1 lvl-2"></div>
-                <div class="pixel grass-0 lvl-1"></div>
-                <div class="pixel grass-2 lvl-2"></div>
-                <div class="pixel grass-1 lvl-0"></div>
-                <div class="pixel grass-3 lvl-1"></div>
-                <div class="pixel grass-2 lvl-2"></div>
-                <div class="pixel grass-3 lvl-0"></div>
-                <div class="pixel grass-0 lvl-1"></div>
-                <div class="pixel grass-0 lvl-0"></div>
-                <div class="pixel grass-2 lvl-2"></div>
-                <div class="pixel grass-2 lvl-1"></div>
-                <div class="pixel grass-0 lvl-2"></div>
-                <div class="pixel grass-1 lvl-1"></div>
-                <div class="pixel grass-3 lvl-1"></div>
-                <div class="pixel grass-3 lvl-2"></div>
-                <div class="pixel grass-3 lvl-2"></div>
-                <div class="pixel grass-0 lvl-1"></div>
-                <div class="pixel grass-3 lvl-1"></div>
-                <div class="pixel grass-1 lvl-1"></div>
-                <div class="pixel grass-3 lvl-2"></div>
-                <div class="pixel grass-2 lvl-1"></div>
-                <div class="pixel grass-2 lvl-0"></div>
-                <div class="pixel grass-3 lvl-0"></div>
-                <div class="pixel grass-3 lvl-1"></div>
-                <div class="pixel grass-1 lvl-1"></div>
-                <div class="pixel grass-0 lvl-2"></div>
-                <div class="pixel grass-2 lvl-2"></div>
-                <div class="pixel grass-0 lvl-1"></div>
-                <div class="pixel grass-3 lvl-0"></div>
-                <div class="pixel grass-1 lvl-2"></div>
-                <div class="pixel grass-0 lvl-2"></div>
-                <div class="pixel grass-3 lvl-2"></div>
-                <div class="pixel grass-1 lvl-0"></div>
-                <div class="pixel grass-0 lvl-1"></div>
-                <div class="pixel grass-0 lvl-2"></div>
-                <div class="pixel grass-3 lvl-1"></div>
-                <div class="pixel grass-1 lvl-0"></div>
-                <div class="pixel grass-0 lvl-2"></div>
-                <div class="pixel grass-1 lvl-0"></div>
-                <div class="pixel grass-3 lvl-2"></div>
-                <div class="pixel grass-1 lvl-0"></div>
-                <div class="pixel grass-2 lvl-0"></div>
-                <div class="pixel grass-0 lvl-1"></div>
-                <div class="pixel grass-1 lvl-1"></div>
-                <div class="pixel grass-3 lvl-1"></div>
-                <div class="pixel grass-0 lvl-1"></div>
-                <div class="pixel grass-2 lvl-1"></div>
-                <div class="pixel grass-2 lvl-2"></div>
-                <div class="pixel grass-1 lvl-0"></div>
-                <div class="pixel grass-3 lvl-0"></div>
-                <div class="pixel grass-2 lvl-2"></div>
-                <div class="pixel grass-0 lvl-1"></div>
-                <div class="pixel grass-1 lvl-1"></div>
-                <div class="pixel grass-2 lvl-1"></div>
-                <div class="pixel grass-2 lvl-2"></div>
-                <div class="pixel grass-2 lvl-2"></div>
-                <div class="pixel grass-0 lvl-0"></div>
-                <div class="pixel grass-2 lvl-1"></div>
-                <div class="pixel grass-0 lvl-0"></div>
-                <div class="pixel grass-3 lvl-0"></div>
-                <div class="pixel grass-2 lvl-1"></div>
-                <div class="pixel grass-0 lvl-2"></div>
-                <div class="pixel grass-1 lvl-1"></div>
-                <div class="pixel grass-0 lvl-1"></div>
-                <div class="pixel grass-2 lvl-0"></div>
-                <!-- ... (rest of the pixel structure) ... -->
-              </div>
+        <div class="tx-hero">
+            <div class="tx-hero__image">
+                <img src="https://minerivals.com/mkd/assets/images/hero-pick-minerivals.png" draggable="false"
+                    (dragstart)="false;" class="unselectable" style="pointer-events: none;" alt="hero-minerivals">
             </div>
-          </div>
-          <!-- partial -->
-          <script  src="./js/hero_block.js"></script>
+            <div class="tx-hero__content">
+                <h1> MineRivals </h1>
+                <p>Next Generation Prison.</p>
+                <a href="{{ page.next_page.url | url }}" title="{{ page.next_page.title | striptags }}"
+                    class="md-button md-button--primary">
+                    Get started
+                </a>
+                <a href="{{ config.repo_url }}" title="{{ lang.t('Join our Discord') }}" class="md-button">
+                    Discord
+                </a>
+            </div>
         </div>
-        <div class="tx-hero__content">
-          <h1> MineRivals </h1>
-          <p>Next Generation Prison.</p>
-          <a href="{{ page.next_page.url | url }}" title="{{ page.next_page.title | striptags }}" class="md-button md-button--primary">
-            Get started
-          </a>
-          <a href="https://discord.minerivals.com" title="{{ lang.t('Join our Discord') }}" class="md-button">
-            Discord
-          </a>
-        </div>
-      </div>
     </div>
 </section>
 <!-- Main site box descriptions -->
 <div class="top-hr">
-  <div class="feature-item">
-      <h2>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-              <path d="M15 17v-3h3v-2l4 3.5-4 3.5v-2h-3m2 1v3h-3v2l-4-3.5 4-3.5v2h3M12 8c-2.21 0-4 1.8-4 4 0 1.91 1.35 3.54 3.21 3.92L16 11.86A3.997 3.997 0 0 0 12 8m0 6c-1.1 0-2-.89-2-2s.9-2 2-2 2 .9 2 2-.89 2-2 2m9.66-5.27-2-3.46c-.12-.22-.38-.31-.61-.22l-2.49 1c-.51-.41-1.06-.74-1.69-1l-.37-2.63A.506.506 0 0 0 14 2h-4c-.25 0-.46.18-.5.42l-.37 2.65c-.63.26-1.17.59-1.69 1L5 5.05c-.23-.09-.5 0-.61.22l-2 3.46c-.13.21-.08.49.11.64L4.57 11l-.07 1 .07 1-2.11 1.63c-.2.15-.25.43-.12.64l2 3.46c.11.27.4.38.66.27l2.5-1c.24.19.5.37.76.53l1.65-1.4c-.77-.33-1.45-.82-2-1.45l-2.41 1-.77-1.3L6.8 13.8a5.55 5.55 0 0 1 0-3.6L4.69 8.65l.75-1.3 2.41 1c.78-.9 1.83-1.53 3-1.78l.4-2.57h1.5l.37 2.62c1.17.24 2.22.88 3 1.77l2.41-1 .75 1.3-2.08 1.51c.09.26.16.53.2.8h2l2.1-1.63a.48.48 0 0 0 .16-.64M12 8c-2.21 0-4 1.8-4 4 0 1.91 1.35 3.54 3.21 3.92L16 11.86A3.997 3.997 0 0 0 12 8m0 6c-1.1 0-2-.89-2-2s.9-2 2-2 2 .9 2 2-.89 2-2 2m0-6c-2.21 0-4 1.8-4 4 0 1.91 1.35 3.54 3.21 3.92L16 11.86A3.997 3.997 0 0 0 12 8m0 6c-1.1 0-2-.89-2-2s.9-2 2-2 2 .9 2 2-.89 2-2 2z"/>
-          </svg>
-          Endless Fun
-      </h2>
-      <p>Placeholder is right here!</p>
-  </div>
-  <div class="feature-item">
-      <h2>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2 2">
-              <path d="M1.813.25h-.4A.804.804 0 0 0 1 .362.803.803 0 0 0 .588.25h-.4C.15.25.125.275.125.313v1.125c0 .037.025.062.063.062h.4c.138 0 .269.037.381.113.013.006.025.013.037.013s.025-.006.037-.013a.681.681 0 0 1 .382-.113h.388a.06.06 0 0 0 .063-.063V.313C1.875.275 1.85.25 1.813.25zm-.125 1.375h-.275a.794.794 0 0 0-.412.113.802.802 0 0 0-.412-.113H.314c-.039 0-.064.025-.064.063s.025.063.063.063h.275c.138 0 .269.037.381.113.013.006.025.013.037.013s.025-.006.037-.013a.681.681 0 0 1 .382-.114h.263c.037 0 .063-.025.063-.063s-.025-.063-.063-.063z"/>
-          </svg>
-          Become Rivaled
-      </h2>
-      <p>Placeholder is right here!</p>
-  </div>
-  <div class="feature-item">
-      <h2>
-          <svg viewBox="0 0 4 4" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2" xmlns="http://www.w3.org/2000/svg">
-              <path d="M.309.269.306.271.304.273.301.275.299.277.296.279.294.281.292.282.29.284.288.286.286.288.284.29.282.292.281.294.279.296.277.299.275.301.273.304.271.306.269.309.268.311.266.314.265.317.263.319.262.322.26.325.259.327.258.33.257.333.256.336.255.339.254.342.253.345v.003L.252.351v.003L.251.357V.36L.25.363.249.366v.003L.25.373v3.252a.125.125 0 0 0 .125.125h3.25a.125.125 0 0 0 .125-.125V.369L3.749.366V.363L3.748.36V.354L3.747.351 3.746.348 3.745.345 3.744.342V.339L3.743.336 3.741.333 3.74.33 3.739.328 3.738.325 3.736.322 3.735.32 3.733.317 3.732.315 3.731.312 3.729.309 3.728.307 3.726.304 3.724.302 3.722.299 3.72.297 3.718.295 3.716.293 3.714.291 3.712.289 3.71.287 3.708.285 3.706.283 3.704.281 3.701.279 3.699.277 3.696.275 3.693.273 3.691.272 3.688.27 3.686.269 3.683.267 3.681.266 3.679.264 3.676.263 3.674.262 3.671.261 3.668.26 3.665.259 3.662.258 3.659.257 3.656.256 3.653.255 3.65.254h-.003L3.644.253h-.003L3.638.252h-.003L3.632.251 3.628.25H.375a.123.123 0 0 0-.066.019ZM3.5 1.25V3.5h-3V1.25h3ZM2 1.625c-.262 0-.514.107-.721.239a2.49 2.49 0 0 0-.5.429.126.126 0 0 0 0 .162s.202.238.5.429c.206.132.458.239.721.239s.514-.107.721-.239c.298-.191.5-.429.5-.429a.126.126 0 0 0 0-.162s-.202-.238-.5-.429c-.207-.132-.459-.239-.721-.239Zm0 .25c.213 0 .417.092.586.201a2.238 2.238 0 0 1 .368.299 2.238 2.238 0 0 1-.368.3c-.168.107-.371.2-.586.2-.213 0-.417-.092-.586-.201a2.238 2.238 0 0 1-.368-.299 2.238 2.238 0 0 1 .368-.3c.169-.107.371-.2.586-.2ZM2 2a.375.375 0 0 0 0 .75A.375.375 0 0 0 2 2ZM1.25.875h.125a.125.125 0 0 0 0-.25H1.25a.125.125 0 0 0 0 .25Zm-.5 0h.125a.125.125 0 0 0 0-.25H.75a.125.125 0 0 0 0 .25Z"/>
-          </svg>
-          Earn Freedom
-      </h2>
-      <p>Placeholder is right here!</p>
-  </div>
+    <div class="feature-item">
+        <h2>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path
+                    d="M15 17v-3h3v-2l4 3.5-4 3.5v-2h-3m2 1v3h-3v2l-4-3.5 4-3.5v2h3M12 8c-2.21 0-4 1.8-4 4 0 1.91 1.35 3.54 3.21 3.92L16 11.86A3.997 3.997 0 0 0 12 8m0 6c-1.1 0-2-.89-2-2s.9-2 2-2 2 .9 2 2-.89 2-2 2m9.66-5.27-2-3.46c-.12-.22-.38-.31-.61-.22l-2.49 1c-.51-.41-1.06-.74-1.69-1l-.37-2.63A.506.506 0 0 0 14 2h-4c-.25 0-.46.18-.5.42l-.37 2.65c-.63.26-1.17.59-1.69 1L5 5.05c-.23-.09-.5 0-.61.22l-2 3.46c-.13.21-.08.49.11.64L4.57 11l-.07 1 .07 1-2.11 1.63c-.2.15-.25.43-.12.64l2 3.46c.11.27.4.38.66.27l2.5-1c.24.19.5.37.76.53l1.65-1.4c-.77-.33-1.45-.82-2-1.45l-2.41 1-.77-1.3L6.8 13.8a5.55 5.55 0 0 1 0-3.6L4.69 8.65l.75-1.3 2.41 1c.78-.9 1.83-1.53 3-1.78l.4-2.57h1.5l.37 2.62c1.17.24 2.22.88 3 1.77l2.41-1 .75 1.3-2.08 1.51c.09.26.16.53.2.8h2l2.1-1.63a.48.48 0 0 0 .16-.64M12 8c-2.21 0-4 1.8-4 4 0 1.91 1.35 3.54 3.21 3.92L16 11.86A3.997 3.997 0 0 0 12 8m0 6c-1.1 0-2-.89-2-2s.9-2 2-2 2 .9 2 2-.89 2-2 2m0-6c-2.21 0-4 1.8-4 4 0 1.91 1.35 3.54 3.21 3.92L16 11.86A3.997 3.997 0 0 0 12 8m0 6c-1.1 0-2-.89-2-2s.9-2 2-2 2 .9 2 2-.89 2-2 2z" />
+            </svg>
+            Endless Fun
+        </h2>
+        <p>Placeholder is right here!</p>
+    </div>
+    <div class="feature-item">
+        <h2>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2 2">
+                <path
+                    d="M1.813.25h-.4A.804.804 0 0 0 1 .362.803.803 0 0 0 .588.25h-.4C.15.25.125.275.125.313v1.125c0 .037.025.062.063.062h.4c.138 0 .269.037.381.113.013.006.025.013.037.013s.025-.006.037-.013a.681.681 0 0 1 .382-.113h.388a.06.06 0 0 0 .063-.063V.313C1.875.275 1.85.25 1.813.25zm-.125 1.375h-.275a.794.794 0 0 0-.412.113.802.802 0 0 0-.412-.113H.314c-.039 0-.064.025-.064.063s.025.063.063.063h.275c.138 0 .269.037.381.113.013.006.025.013.037.013s.025-.006.037-.013a.681.681 0 0 1 .382-.114h.263c.037 0 .063-.025.063-.063s-.025-.063-.063-.063z" />
+            </svg>
+            Become Rivaled
+        </h2>
+        <p>Placeholder is right here!</p>
+    </div>
+    <div class="feature-item">
+        <h2>
+            <svg viewBox="0 0 4 4" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M.309.269.306.271.304.273.301.275.299.277.296.279.294.281.292.282.29.284.288.286.286.288.284.29.282.292.281.294.279.296.277.299.275.301.273.304.271.306.269.309.268.311.266.314.265.317.263.319.262.322.26.325.259.327.258.33.257.333.256.336.255.339.254.342.253.345v.003L.252.351v.003L.251.357V.36L.25.363.249.366v.003L.25.373v3.252a.125.125 0 0 0 .125.125h3.25a.125.125 0 0 0 .125-.125V.369L3.749.366V.363L3.748.36V.354L3.747.351 3.746.348 3.745.345 3.744.342V.339L3.743.336 3.741.333 3.74.33 3.739.328 3.738.325 3.736.322 3.735.32 3.733.317 3.732.315 3.731.312 3.729.309 3.728.307 3.726.304 3.724.302 3.722.299 3.72.297 3.718.295 3.716.293 3.714.291 3.712.289 3.71.287 3.708.285 3.706.283 3.704.281 3.701.279 3.699.277 3.696.275 3.693.273 3.691.272 3.688.27 3.686.269 3.683.267 3.681.266 3.679.264 3.676.263 3.674.262 3.671.261 3.668.26 3.665.259 3.662.258 3.659.257 3.656.256 3.653.255 3.65.254h-.003L3.644.253h-.003L3.638.252h-.003L3.632.251 3.628.25H.375a.123.123 0 0 0-.066.019ZM3.5 1.25V3.5h-3V1.25h3ZM2 1.625c-.262 0-.514.107-.721.239a2.49 2.49 0 0 0-.5.429.126.126 0 0 0 0 .162s.202.238.5.429c.206.132.458.239.721.239s.514-.107.721-.239c.298-.191.5-.429.5-.429a.126.126 0 0 0 0-.162s-.202-.238-.5-.429c-.207-.132-.459-.239-.721-.239Zm0 .25c.213 0 .417.092.586.201a2.238 2.238 0 0 1 .368.299 2.238 2.238 0 0 1-.368.3c-.168.107-.371.2-.586.2-.213 0-.417-.092-.586-.201a2.238 2.238 0 0 1-.368-.299 2.238 2.238 0 0 1 .368-.3c.169-.107.371-.2.586-.2ZM2 2a.375.375 0 0 0 0 .75A.375.375 0 0 0 2 2ZM1.25.875h.125a.125.125 0 0 0 0-.25H1.25a.125.125 0 0 0 0 .25Zm-.5 0h.125a.125.125 0 0 0 0-.25H.75a.125.125 0 0 0 0 .25Z" />
+            </svg>
+            Earn Freedom
+        </h2>
+        <p>Placeholder is right here!</p>
+    </div>
 </div>
 {% endblock %}
 {% block content %}{% endblock %}
