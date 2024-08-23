@@ -1,0 +1,25 @@
+#hero {
+  position: fixed;
+  animation: drift;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes drift {
+  from {
+    transform: translateY(-6%);
+  }
+  to {
+    transform: translateY(6%);
+  }
+}
+@keyframes shadow {
+  from {
+    transform: translate(240%, -240%) scale(0.6);
+  }
+  to {
+    transform: translate(205%, -205%) scale(0.8);
+  }
+}
