@@ -65,8 +65,8 @@ theme:
     primary: indigo
     accent: light blue
 
-  logo: mkd/assets/images/logo-shardbyte-master-light.webp
-  favicon: mkd/assets/images/logo-shardbyte-master-light.webp
+  logo: mkd/assets/images/emerald-minerivals.png
+  favicon: mkd/assets/images/emerald-minerivals.png
 
 ## Global Font
   font:
