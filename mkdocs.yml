@@ -147,6 +147,11 @@ plugins:
 #########
 extra:
 
+## Status
+  status:
+    new: Recently added
+    hot: Hot topic
+
 ## Social Links
   social:
     # Discord
@@ -168,3 +173,13 @@ extra_css:
 #########
 nav:
   - Home: index.md
+  - Getting Started: getting-started.md
+  - Features:
+      - Commands: features/commands.md
+      - Economy: features/economy.md
+      - Levels: features/levels.md
+      - Shop: features/shop.md
+      - Tags: features/tags.md
+  - Vote: vote.md
+  - Support: support.md
+  - Changelog: changelog.md
