@@ -4,9 +4,6 @@ subtitle: "MineRivals is a next generation Minecraft Prison Server."
 description: "Welcome to MineRivals, where your journey to freedom begins!"
 icon: material/minecraft
 status: new
-hide:
-  - navigation
-  - header
 ---
 
 # **Getting Started**
