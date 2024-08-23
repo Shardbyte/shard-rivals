@@ -106,9 +106,6 @@ markdown_extensions:
       pygments_lang_class: true
   - pymdownx.magiclink:
       normalize_issue_symbols: true
-      repo_url_shorthand: true
-      user: Shardbyte
-      repo: shard-docs
   - pymdownx.snippets:
       auto_append:
         - refs/abbreviations.md
