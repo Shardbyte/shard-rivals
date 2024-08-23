@@ -4,6 +4,10 @@ subtitle: "MineRivals grows with each vote."
 description: "MineRivals, where each vote helps the server grow in size!"
 icon: material/scale-balance
 status: new
+hide:
+  - navigation
+  - footer
+  - header
 ---
 
 
