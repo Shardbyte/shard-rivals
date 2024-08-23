@@ -6,8 +6,6 @@ icon: material/minecraft
 status: new
 ---
 
-## **Getting Started**
-
 Welcome to **MineRivals**, where your journey to freedom begins! Start by selecting your tools and diving into the mines to gather essential resources. As you accumulate wealth, trade with other inmates, complete tasks, and rise through the prison ranks. Unlock new areas, gain powerful upgrades, and develop strategies to outsmart your rivals. With every step, you'll get closer to earning your freedom and dominating the server. Ready to take on the challenge? Your adventure starts **now**!
 
 ---
