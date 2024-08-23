@@ -9,9 +9,6 @@ hide:
   - header
 ---
 
-
-## **How voting works**
-
 Voting on **MineRivals** can significantly contribute to the server's growth in several ways:
 
 ### **Increased Visibility**
