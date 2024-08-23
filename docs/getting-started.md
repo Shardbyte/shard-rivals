@@ -6,7 +6,6 @@ icon: material/minecraft
 status: new
 hide:
   - navigation
-  - toc
   - header
 ---
 
