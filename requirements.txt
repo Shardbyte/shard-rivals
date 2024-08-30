@@ -22,7 +22,7 @@ pathspec==0.12.1
 cairocffi==1.7.1
 regex==2024.7.24
 Pygments==2.18.0
-certifi==2024.7.4
+certifi==2024.8.30
 ghp-import==2.1.0
 MarkupSafe==2.1.5
 pyyaml_env_tag==0.1
