@@ -30,7 +30,7 @@ platformdirs==4.2.2
 mkdocs-get-deps==0.2.0
 mkdocs-material==9.5.32
 mkdocs-glightbox==0.4.0
-pymdown-extensions==10.9
+pymdown-extensions==10.10.1
 charset-normalizer==3.3.2
 mkdocs-minify-plugin==0.8.0
 python-dateutil==2.9.0.post0
