@@ -28,7 +28,7 @@ MarkupSafe==2.1.5
 pyyaml_env_tag==0.1
 platformdirs==4.2.2
 mkdocs-get-deps==0.2.0
-mkdocs-material==9.5.32
+mkdocs-material==9.5.37
 mkdocs-glightbox==0.4.0
 pymdown-extensions==10.9
 charset-normalizer==3.3.2
